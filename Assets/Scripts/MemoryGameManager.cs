@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // For UI Text
+using TMPro;
+using UnityEngine.SceneManagement; // Needed for scene loading
 
 public class MemoryGameManager : MonoBehaviour
 {
@@ -12,18 +13,33 @@ public class MemoryGameManager : MonoBehaviour
         public GameObject card2;
     }
 
-    public List<CardPair> correctPairs;      // Assign in Inspector
+    public List<CardPair> correctPairs; 
     public float flipBackDelay = 1f;
-
-    public TMP_Text scoreText;                // Assign a UI Text for score
-    public TMP_Text clickText;                // Assign a UI Text for click count
-
-    private int score = 0;
-    private int clickCount = 0;
 
     private GameObject firstSelected = null;
     private GameObject secondSelected = null;
     private bool canClick = true;
+
+    [Header("UI References")]
+    public TMP_Text scoreText;   
+    public TMP_Text clickText;   
+    public GameObject winPanel; // Assign in Inspector (make inactive at start)
+
+    [Header("Scoring Settings")]
+    public int score = 0;
+    public int clicks = 0;
+
+    [Header("Pop Animation Settings")]
+    public float popScale = 1.2f;    
+    public float popDuration = 0.2f; 
+
+    void Start()
+    {
+        UpdateScore(0);
+        UpdateClicks(0);
+        if (winPanel != null)
+            winPanel.SetActive(false); // Hide win panel at start
+    }
 
     void Update()
     {
@@ -47,11 +63,8 @@ public class MemoryGameManager : MonoBehaviour
         if (firstSelected == clickedCard || cardScript.isMatched)
             return;
 
-        // Increment click count
-        clickCount++;
-        UpdateClickUI();
-
         cardScript.Flip();
+        UpdateClicks(1);
 
         if (firstSelected == null)
         {
@@ -67,7 +80,7 @@ public class MemoryGameManager : MonoBehaviour
 
     IEnumerator CheckPair()
     {
-        yield return new WaitForSeconds(0.5f); // Wait for flip animation
+        yield return new WaitForSeconds(0.5f);
 
         bool isMatch = false;
         foreach (CardPair pair in correctPairs)
@@ -85,9 +98,7 @@ public class MemoryGameManager : MonoBehaviour
             firstSelected.GetComponent<Card>().isMatched = true;
             secondSelected.GetComponent<Card>().isMatched = true;
 
-            // Add 5 points for correct pair
-            score += 5;
-            UpdateScoreUI();
+            UpdateScore(5);
         }
         else
         {
@@ -102,8 +113,7 @@ public class MemoryGameManager : MonoBehaviour
 
         if (AllPairsFound())
         {
-            Debug.Log("All pairs found! Final Score: " + score + ", Clicks: " + clickCount);
-            // Optional: load next scene or show Win UI
+            StartCoroutine(ShowWinPanelWithDelay(0.5f)); // Delay before showing panel
         }
     }
 
@@ -117,15 +127,52 @@ public class MemoryGameManager : MonoBehaviour
         return true;
     }
 
-    void UpdateScoreUI()
+    IEnumerator ShowWinPanelWithDelay(float delay)
     {
-        if(scoreText != null)
-            scoreText.text = "Score: " + score;
+        yield return new WaitForSeconds(delay);
+        if (winPanel != null)
+            winPanel.SetActive(true);
     }
 
-    void UpdateClickUI()
+    public void NextLevel()
     {
-        if(clickText != null)
-            clickText.text = "Clicks: " + clickCount;
+        // Load next scene by index
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void UpdateScore(int amount)
+    {
+        score += amount;
+        scoreText.text = "Score: " + score;
+        StartCoroutine(PopText(scoreText));
+    }
+
+    public void UpdateClicks(int amount)
+    {
+        clicks += amount;
+        clickText.text = "Clicks: " + clicks;
+        StartCoroutine(PopText(clickText));
+    }
+
+    private IEnumerator PopText(TMP_Text textObj)
+    {
+        Vector3 originalScale = textObj.transform.localScale;
+        Vector3 targetScale = originalScale * popScale;
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / (popDuration / 2);
+            textObj.transform.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            yield return null;
+        }
+
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / (popDuration / 2);
+            textObj.transform.localScale = Vector3.Lerp(targetScale, originalScale, t);
+            yield return null;
+        }
     }
 }
