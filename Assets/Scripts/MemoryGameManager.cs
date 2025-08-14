@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro; // For UI Text
 
 public class MemoryGameManager : MonoBehaviour
 {
@@ -11,8 +12,14 @@ public class MemoryGameManager : MonoBehaviour
         public GameObject card2;
     }
 
-    public List<CardPair> correctPairs; // Set pairs in Inspector
+    public List<CardPair> correctPairs;      // Assign in Inspector
     public float flipBackDelay = 1f;
+
+    public TMP_Text scoreText;                // Assign a UI Text for score
+    public TMP_Text clickText;                // Assign a UI Text for click count
+
+    private int score = 0;
+    private int clickCount = 0;
 
     private GameObject firstSelected = null;
     private GameObject secondSelected = null;
@@ -39,6 +46,10 @@ public class MemoryGameManager : MonoBehaviour
         Card cardScript = clickedCard.GetComponent<Card>();
         if (firstSelected == clickedCard || cardScript.isMatched)
             return;
+
+        // Increment click count
+        clickCount++;
+        UpdateClickUI();
 
         cardScript.Flip();
 
@@ -73,6 +84,10 @@ public class MemoryGameManager : MonoBehaviour
         {
             firstSelected.GetComponent<Card>().isMatched = true;
             secondSelected.GetComponent<Card>().isMatched = true;
+
+            // Add 5 points for correct pair
+            score += 5;
+            UpdateScoreUI();
         }
         else
         {
@@ -85,11 +100,10 @@ public class MemoryGameManager : MonoBehaviour
         secondSelected = null;
         canClick = true;
 
-        // Check if all pairs are found
         if (AllPairsFound())
         {
-            Debug.Log("All pairs found! Scene complete!");
-            // Optional: Load next scene or show Win UI
+            Debug.Log("All pairs found! Final Score: " + score + ", Clicks: " + clickCount);
+            // Optional: load next scene or show Win UI
         }
     }
 
@@ -102,5 +116,16 @@ public class MemoryGameManager : MonoBehaviour
         }
         return true;
     }
-}
 
+    void UpdateScoreUI()
+    {
+        if(scoreText != null)
+            scoreText.text = "Score: " + score;
+    }
+
+    void UpdateClickUI()
+    {
+        if(clickText != null)
+            clickText.text = "Clicks: " + clickCount;
+    }
+}
