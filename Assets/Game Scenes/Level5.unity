@@ -370,6 +370,68 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5361792778864638172, guid: ba90fbfcc86cb5d43806cea9a64e4215, type: 3}
   m_PrefabInstance: {fileID: 399275117}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &422524113
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974488, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838628335843974495, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+--- !u!82 &422524114 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8838628335356812012, guid: e9a56e25f3a7d244b8d847b5c9226d2d, type: 3}
+  m_PrefabInstance: {fileID: 422524113}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &478700044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1404,6 +1466,26 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 478700047}
+    - target: {fileID: 4140932476116115077, guid: 285a547d3e9a45c4ebc1885f2216184c, type: 3}
+      propertyPath: sfxSource
+      value: 
+      objectReference: {fileID: 422524114}
+    - target: {fileID: 4140932476116115077, guid: 285a547d3e9a45c4ebc1885f2216184c, type: 3}
+      propertyPath: clickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7cf4bd7b0d53b774aafee1309d9fd700, type: 3}
+    - target: {fileID: 4140932476116115077, guid: 285a547d3e9a45c4ebc1885f2216184c, type: 3}
+      propertyPath: matchSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9231a89af9954c2439e730c0bf55aca2, type: 3}
+    - target: {fileID: 4140932476116115077, guid: 285a547d3e9a45c4ebc1885f2216184c, type: 3}
+      propertyPath: levelUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0647939eb426b384c92decab199b8c6e, type: 3}
+    - target: {fileID: 4140932476116115077, guid: 285a547d3e9a45c4ebc1885f2216184c, type: 3}
+      propertyPath: mismatchSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b7071b322ed0894489822309a3bde8df, type: 3}
     - target: {fileID: 4140932476116115077, guid: 285a547d3e9a45c4ebc1885f2216184c, type: 3}
       propertyPath: correctPairs.Array.size
       value: 5
