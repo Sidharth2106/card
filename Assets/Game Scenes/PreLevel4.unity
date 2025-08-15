@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previewTime: 2
-  nextSceneName: Level3
+  nextSceneName: Level4
 --- !u!4 &1798446256
 Transform:
   m_ObjectHideFlags: 0
