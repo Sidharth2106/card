@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 
 public class MemoryGameManager : MonoBehaviour
@@ -13,6 +12,8 @@ public class MemoryGameManager : MonoBehaviour
         public GameObject card2;
     }
 
+    public static MemoryGameManager instance;  // Singleton reference
+
     public List<CardPair> correctPairs;
     public float flipBackDelay = 1f;
 
@@ -21,24 +22,21 @@ public class MemoryGameManager : MonoBehaviour
     private bool canClick = true;
 
     [Header("UI References")]
-    public TMP_Text scoreText;
-    public TMP_Text clickText;
     public GameObject winPanel;
 
     [Header("Scoring Settings")]
     public int score = 0;
     public int clicks = 0;
 
-    [Header("Pop Animation Settings")]
-    public float popScale = 1.2f;
-    public float popDuration = 0.2f;
+    void Awake()
+    {
+        instance = this; // Register global access
+    }
 
     void Start()
     {
-        UpdateScore(0);
-        UpdateClicks(0);
         if (winPanel != null)
-            winPanel.SetActive(false); // hide at start
+            winPanel.SetActive(false); // Hide WinPanel at start
     }
 
     void Update()
@@ -63,11 +61,11 @@ public class MemoryGameManager : MonoBehaviour
         if (firstSelected == clickedCard || cardScript.isMatched)
             return;
 
-        // Play card click sound from SoundManager
+        // Play card click sound
         SoundManager.instance.PlaySFX(SoundManager.instance.clickSound);
 
         cardScript.Flip();
-        UpdateClicks(1);
+        clicks++; // Count total attempts
 
         if (firstSelected == null)
         {
@@ -104,7 +102,7 @@ public class MemoryGameManager : MonoBehaviour
             // Play match sound
             SoundManager.instance.PlaySFX(SoundManager.instance.matchSound);
 
-            UpdateScore(5);
+            score += 5; // Add score for match
         }
         else
         {
@@ -122,7 +120,7 @@ public class MemoryGameManager : MonoBehaviour
 
         if (AllPairsFound())
         {
-            canClick = false; 
+            canClick = false;
             StartCoroutine(ShowWinPanelWithDelay(0.5f));
         }
     }
@@ -144,52 +142,15 @@ public class MemoryGameManager : MonoBehaviour
         // Play win sound
         SoundManager.instance.PlaySFX(SoundManager.instance.winSound);
 
-        // Small delay before showing win panel (sync with sound)
         if (SoundManager.instance.winSound != null)
             yield return new WaitForSeconds(SoundManager.instance.winSound.length * 0.8f);
 
         if (winPanel != null)
-            winPanel.SetActive(true);
+            winPanel.SetActive(true); // WinPanel will handle its own display
     }
 
     public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
-    public void UpdateScore(int amount)
-    {
-        score += amount;
-        scoreText.text = "Score: " + score;
-        StartCoroutine(PopText(scoreText));
-    }
-
-    public void UpdateClicks(int amount)
-    {
-        clicks += amount;
-        clickText.text = "Clicks: " + clicks;
-        StartCoroutine(PopText(clickText));
-    }
-
-    private IEnumerator PopText(TMP_Text textObj)
-    {
-        Vector3 originalScale = textObj.transform.localScale;
-        Vector3 targetScale = originalScale * popScale;
-
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime / (popDuration / 2);
-            textObj.transform.localScale = Vector3.Lerp(originalScale, targetScale, t);
-            yield return null;
-        }
-
-        t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime / (popDuration / 2);
-            textObj.transform.localScale = Vector3.Lerp(targetScale, originalScale, t);
-            yield return null;
-        }
-    }
 }
