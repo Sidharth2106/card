@@ -12,33 +12,33 @@ EditorBuildSettings:
     path: Assets/Scene/LevelScene.unity
     guid: 7df4d4f7f5edc56408d6908748635cb1
   - enabled: 1
-    path: Assets/Game Scenes/PreLevel1.unity
+    path: Assets/Game Scenes/1_NOVICE.unity
     guid: 47b6bab7c49f32d41b4a2185020c27d1
   - enabled: 1
-    path: Assets/Game Scenes/Level1.unity
+    path: Assets/Game Scenes/NOVICE.unity
     guid: 3510db762ecf654428e1695e62ca6ddf
   - enabled: 1
-    path: Assets/Game Scenes/PreLevel2.unity
+    path: Assets/Game Scenes/2_HEROIC.unity
     guid: cec015815a228d94ab8e23e76201371e
   - enabled: 1
-    path: Assets/Game Scenes/Level2.unity
+    path: Assets/Game Scenes/HEROIC.unity
     guid: aa367856e81b78149926db17366999ba
   - enabled: 1
-    path: Assets/Game Scenes/PreLevel3.unity
+    path: Assets/Game Scenes/3_EPIC.unity
     guid: a6655887809a80845ab3f260672d3178
   - enabled: 1
-    path: Assets/Game Scenes/Level3.unity
+    path: Assets/Game Scenes/EPIC.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Game Scenes/PreLevel4.unity
+    path: Assets/Game Scenes/4_MYTHIC.unity
     guid: c72e3f06959997e4c803a5d3ba7d3bd3
   - enabled: 1
-    path: Assets/Game Scenes/Level4.unity
+    path: Assets/Game Scenes/MYTHIC.unity
     guid: a95f9858df7002b49993731945ee308d
   - enabled: 1
-    path: Assets/Game Scenes/PreLevel5.unity
+    path: Assets/Game Scenes/5_GODLIKE.unity
     guid: efd5159c29776424380de60e86cff200
   - enabled: 1
-    path: Assets/Game Scenes/Level5.unity
+    path: Assets/Game Scenes/GODLIKE.unity
     guid: 0cfc7c860d3b744408f4c5b34b0a08e5
   m_configObjects: {}

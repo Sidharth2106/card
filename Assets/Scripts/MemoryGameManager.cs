@@ -139,18 +139,42 @@ public class MemoryGameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+        // ✅ Unlock next level immediately after win
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        int unlockedLevel = PlayerPrefs.GetInt("levelUnlocked", 1);
+
+        // Scene 0 = LevelSelect, so Level 1 starts at build index 1
+        if (unlockedLevel < currentIndex + 1)
+        {
+            PlayerPrefs.SetInt("levelUnlocked", currentIndex + 1);
+            PlayerPrefs.Save();
+            Debug.Log("Unlocked level progress updated to: " + (currentIndex + 1));
+        }
+
         // Play win sound
         SoundManager.instance.PlaySFX(SoundManager.instance.winSound);
 
         if (SoundManager.instance.winSound != null)
-            yield return new WaitForSeconds(SoundManager.instance.winSound.length * 0.8f);
+            yield return new WaitForSeconds(SoundManager.instance.winSound.length * 0.5f);
 
         if (winPanel != null)
-            winPanel.SetActive(true); // WinPanel will handle its own display
+            winPanel.SetActive(true); // Show WinPanel
     }
 
+    // ✅ Called by Next Level button on WinPanel
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Ensure progress is saved (just in case)
+        int unlockedLevel = PlayerPrefs.GetInt("levelUnlocked", 1);
+        if (unlockedLevel < currentIndex + 1)
+        {
+            PlayerPrefs.SetInt("levelUnlocked", currentIndex + 1);
+            PlayerPrefs.Save();
+        }
+
+        // After unlocking → go back to LevelSelect menu
+        SceneManager.LoadScene("LevelSelect");
     }
 }
