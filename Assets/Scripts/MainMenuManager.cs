@@ -6,7 +6,7 @@ public class MainMenuManager : MonoBehaviour
     public void PlayGame()
     {
         // Replace "GameScene" with your actual game scene name
-        SceneManager.LoadScene("PreLevel1");
+        SceneManager.LoadScene("LevelScene");
     }
 
     public void QuitGame()
