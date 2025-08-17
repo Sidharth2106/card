@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scene/SplashScene.unity
+    guid: 1804b857d745d9d4da7d863d7176837e
+  - enabled: 1
     path: Assets/Scene/HomeScene.unity
     guid: eda0290443c1b424588b382a16592719
   - enabled: 1
-    path: Assets/Scene/LevelScene.unity
+    path: Assets/Scene/LevelSelect.unity
     guid: 7df4d4f7f5edc56408d6908748635cb1
   - enabled: 1
     path: Assets/Game Scenes/1_NOVICE.unity
