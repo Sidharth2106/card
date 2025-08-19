@@ -42,7 +42,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bf04979f20008e64e91463b0241c7b26, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -303,7 +303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 8838628335356812012}
+  musicSource: {fileID: 8838628334391481749}
   clickSound: {fileID: 8300000, guid: 7cf4bd7b0d53b774aafee1309d9fd700, type: 3}
   matchSound: {fileID: 8300000, guid: 9231a89af9954c2439e730c0bf55aca2, type: 3}
   wrongSound: {fileID: 8300000, guid: b7071b322ed0894489822309a3bde8df, type: 3}
   winSound: {fileID: 8300000, guid: 0647939eb426b384c92decab199b8c6e, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: bf04979f20008e64e91463b0241c7b26, type: 3}

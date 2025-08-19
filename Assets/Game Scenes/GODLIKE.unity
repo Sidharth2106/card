@@ -1291,11 +1291,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4372318907192181359, guid: 47d3ab8696a45cf41a1f053d70c8d8b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -873.422
+      value: -358.5
       objectReference: {fileID: 0}
     - target: {fileID: 4372318907192181359, guid: 47d3ab8696a45cf41a1f053d70c8d8b6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 476.312
+      value: 191.8
       objectReference: {fileID: 0}
     - target: {fileID: 4939532050777786922, guid: 47d3ab8696a45cf41a1f053d70c8d8b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
